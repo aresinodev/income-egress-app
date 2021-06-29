@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "income-egress-app-87a2f": {
+      "hosting": {
+        "incomeEgressApp": [
+          "income-egress-app-87a2f"
+        ]
+      }
+    }
+  }
+}
