@@ -39,10 +39,13 @@
               <div class="form-group">
                 <button type="submit"
                         class="btn btn-primary submit-btn btn-block"
-                        [disabled]="loginForm.invalid">Login</button>
+                        [disabled]="loginForm.invalid || loading">
+                        <i *ngIf="loading" class="fa fa-spin fa-sync"></i>
+                        <span>{{ loading ? 'Espere...' : 'Login' }}</span>
+                </button>
               </div>
-              
-              
+
+
               <div class="text-block text-center my-3">
                 <span class="text-small font-weight-semibold">No estas registrado?</span>
                 <br>
@@ -51,8 +54,8 @@
               </div>
             </form>
           </div>
-          
-          
+
+
         </div>
       </div>
     </div>
