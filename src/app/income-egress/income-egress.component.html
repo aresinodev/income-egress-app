@@ -2,54 +2,56 @@
     <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Agregar Ingreso / Egreso</h4>
+            <h4 class="card-title">Agregar Ingreso / Gasto</h4>
             <p class="card-description">
-              Especifique el monto y el tipo
+              Especifique la cantidad y el tipo
             </p>
 
-            <form>
+            <form [formGroup]="incomeForm">
               
-              <div class="form-group">
+              <div class="form-group" (ngSubmit)="save()">
                 <label>Descripción</label>
                 <input type="text" 
                        class="form-control" 
                        placeholder="Descripción"
-                       name="descripcion">
+                       name="descripcion"
+                       formControlName="description">
               </div>
 
               <div class="form-group">
-                  <label>Monto</label>
+                  <label>Cantidad</label>
                   <input type="number" 
                          class="form-control" 
-                         placeholder="Monto"
-                         name="monto">
+                         placeholder="Cantidad"
+                         name="quantity"
+                         formControlName="quantity">
                     <p>
-                      Debe de ser un monto positivo
+                      Debe de ser una cantidad en positivo
                     </p>
                 </div>
 
               <div class="form-group">
                   <label>Tipo</label>
                   <br>
-                  <button type="button" class="btn btn-primary btn-block">Ingreso</button>
-                  <!-- <button type="button" class="btn btn-warning btn-block">Egreso</button> -->
+                  <button *ngIf="type === 'income'"
+                          type="button"
+                          class="btn btn-primary btn-block"
+                          (click)="type = 'income'">Ingreso</button>
+                  <button *ngIf="type === 'egress'"
+                          type="button"
+                          class="btn btn-warning btn-block"
+                          (click)="type = 'egress'">Egreso</button>
               </div>
 
               <hr>
-              <button type="button" class="btn btn-success mr-2">
-                <i class="fa fa-save"></i>
-                Agregar
+              <button type="submit" class="btn btn-success mr-2"
+                      [disabled]="incomeForm.invalid || loading">
+                <i *ngIf="!loading" class="fa fa-save"></i>
+                <i *ngIf="loading" class="fa fa-spin fa-sync"></i>
+                <span>{{ loading ? 'Espere...' : 'Agregar' }}</span>
               </button>
 
-              <!-- 
-                <button disabled class="btn btn-success mr-2">
-                  <i class="fa fa-spin fa-sync"></i>
-                  Espere por favor...
-                </button> 
-              -->
-              
               <button type="reset" class="btn btn-light">Cancelar</button>
-
             </form>
           </div>
         </div>
