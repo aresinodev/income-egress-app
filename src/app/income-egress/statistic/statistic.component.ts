@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { MultiDataSet, Label } from 'ng2-charts';
 
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducer';
+import { AppStateWithIncomesEgresses } from '../income-egress.reducer';
 
-import { IncomeEgress } from 'src/app/models/income-egress.model';
+import { IncomeEgress } from '../../models/income-egress.model';
 
 @Component({
   selector: 'app-statistic',
@@ -23,7 +23,7 @@ export class StatisticComponent implements OnInit {
   public doughnutChartData: MultiDataSet = [[]];
 
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppStateWithIncomesEgresses>) {}
 
   ngOnInit(): void {
     this.store.select('incomesEgresses')

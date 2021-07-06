@@ -54,7 +54,7 @@ export class IncomeEgressComponent implements OnInit, OnDestroy {
       this.incomeForm.reset();
       Swal.fire('Registro creado', description, 'success');
     })
-    .catch(err => {
+    .catch(() => {
       this.store.dispatch(ui.stopLoading());
       Swal.fire('Error', description, 'error');
     });

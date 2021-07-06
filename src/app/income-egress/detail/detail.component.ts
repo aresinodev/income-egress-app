@@ -3,11 +3,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducer';
+import { AppStateWithIncomesEgresses } from '../income-egress.reducer';
 
-import { IncomeEgress } from 'src/app/models/income-egress.model';
-import { IncomeEgressService } from 'src/app/services/income-egress.service';
 import Swal from 'sweetalert2';
+
+import { IncomeEgress } from '../../models/income-egress.model';
+import { IncomeEgressService } from '../../services/income-egress.service';
 
 @Component({
   selector: 'app-detail',
@@ -19,7 +20,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   incomesEgresses: IncomeEgress[] = [];
   incomesSubs!: Subscription;
 
-  constructor(private store: Store<AppState>,
+  constructor(private store: Store<AppStateWithIncomesEgresses>,
               private incomeEgressSvc: IncomeEgressService) { }
 
   ngOnInit(): void {
